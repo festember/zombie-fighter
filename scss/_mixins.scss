@@ -1,0 +1,45 @@
+@mixin box-shadow($params) {
+  -webkit-box-shadow: $params;
+     -moz-box-shadow: $params;
+          box-shadow: $params;
+}
+@mixin border-radius($radius) {
+  -webkit-border-radius: $radius;
+     -moz-border-radius: $radius;
+      -ms-border-radius: $radius;
+          border-radius: $radius;
+}
+@mixin transform($params) { 
+    -webkit-transform:$params;
+       -moz-transform:$params;
+        -ms-transform:$params;
+            transform:$params;
+}
+@mixin transition($params) { 
+    -webkit-transition:$params;
+       -moz-transition:$params;
+        -ms-transition:$params;
+            transition:$params;
+}
+@mixin animation($params) { 
+    -webkit-animation:$params;
+       -moz-animation:$params;
+        -ms-animation:$params;
+            animation:$params;
+}
+@mixin keyframes($name) { 
+    @-webkit-keyframes $name { @content }
+    @-moz-keyframes $name { @content }
+    @-ms-keyframes $name { @content }
+    @keyframes $name { @content }
+}
+@mixin anim($animName, $steps, $animNbr, $animParams){
+    .#{$animName} { 
+        @content;
+        @include animation($animName steps($steps) $animParams); 
+    }
+    @include keyframes($animName) {
+        from { background-position:0px (-$spriteHeight * ($animNbr - 1)); }
+          to { background-position:-($spriteWidth * $steps) (-$spriteHeight * ($animNbr - 1)); }
+    }
+}
